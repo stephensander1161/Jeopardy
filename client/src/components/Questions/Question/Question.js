@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -11,8 +11,18 @@ import { likeQuestion, deleteQuestion } from '../../../actions/questions';
 import useStyles from './styles';
 
 const Question = ({ question, setCurrentId }) => {
+    const [showResults, setShowResults] = React.useState(false)
+        const [showButton, setShowButton] = React.useState(true)
+
+
   const dispatch = useDispatch();
   const classes = useStyles();
+
+    const answerClicked = () => {
+      setShowResults(true); 
+      setShowButton(false);
+    }
+
 
   return (
     <Card  className={classes.card}>
@@ -21,10 +31,15 @@ const Question = ({ question, setCurrentId }) => {
         <Typography className={classes.qtitle} variant="h5">{question.question}</Typography>
 
       <div className={classes.overlay2}>
-        <Button style={{ color: 'white' }} size="small" onClick={() => setCurrentId(question._id)}><MoreHorizIcon fontSize="default" /></Button>
+        <Button style={{ color: 'black' }} size="small" onClick={() => setCurrentId(question._id)}><MoreHorizIcon fontSize="default" /></Button>
       </div>
-        <Typography className={classes.qtitle} variant="h10">Answer:</Typography>
-        <Typography className={classes.qtitle} variant="h5">{question.answer}</Typography>
+<Button value="Search" onClick={answerClicked}> Check Answer
+            
+
+            </Button>        
+            { showResults ? <Typography className={classes.qtitle} variant="h5">{question.answer}</Typography> : null }
+        
+        
       <CardContent className="grid-container ">
           <div className="item1">
           <Typography variant="h10"  color="textSecondary" component="h15">Created by: </Typography>

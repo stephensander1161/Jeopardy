@@ -38,8 +38,8 @@ const Form = ({ currentId, setCurrentId }) => {
       <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
         <Typography variant="h6">{currentId ? 'Editing'  : 'Create Jeopardy Question'}</Typography>
         <TextField name="question" variant="outlined" label="Question" fullWidth value={questionData.question} onChange={(e) => setQuestionData({ ...questionData, question: e.target.value })} />
-        <TextField name="answer" variant="outlined" label="Answer" fullWidth value={questionData.answer} onChange={(e) => setQuestionData({ ...questionData, answer: e.target.value })} />
-        <TextField name="creator" variant="outlined" label="Creator" fullWidth multiline rows={4} value={questionData.creator} onChange={(e) => setQuestionData({ ...questionData, creator: e.target.value })} />
+        <TextField name="answer" variant="outlined" label="Answer" fullWidth multiline rows={4} value={questionData.answer} onChange={(e) => setQuestionData({ ...questionData, answer: e.target.value })} />
+        <TextField name="creator" variant="outlined" label="Creator" fullWidth value={questionData.creator} onChange={(e) => setQuestionData({ ...questionData, creator: e.target.value })} />
         <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth value={questionData.tags} onChange={(e) => setQuestionData({ ...questionData, tags: e.target.value.split(',') })} />
         <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({ base64 }) => setQuestionData({ ...questionData, selectedFile: base64 })} /></div>
         <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
