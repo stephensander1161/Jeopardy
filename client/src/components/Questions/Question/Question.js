@@ -29,7 +29,7 @@ const Question = ({ question, setCurrentId }) => {
   return (
     <Card  className={classes.card}>
       {/* <CardMedia className={classes.media} image={question.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={question.question} /> */}
-        <Typography className={classes.qtitle} variant="h10">Question:</Typography>
+        <Typography className={classes.qtitle} variant="h6">Question:</Typography>
         <Typography className={classes.qtitle} variant="h5">{question.question}</Typography>
 
       <div className={classes.overlay2}>
@@ -40,14 +40,7 @@ const Question = ({ question, setCurrentId }) => {
 
             </Button>        
             { showResults ? <div><Typography className={classes.qtitle} variant="h5">{question.answer}</Typography>  <CardContent className="grid-container ">
-          <div className="item1">
-          <Typography variant="h10"  color="textSecondary" component="h15">Created by: </Typography>
-        <Typography variant="h10" color="textSecondary" component="h15">{question.creator}</Typography>
-        </div>
-        <div className="item2">
-        <Typography variant="h10" color="textSecondary" className={classes.qtitle} component="h15">Tags:</Typography>
-        <Typography variant="h10" color="textSecondary" component="h15">{question.tags.map((tag) => `${tag}, `)}</Typography>
-      </div>
+         
       </CardContent>
       <CardActions className={classes.cardActions}>
         <Button size="small" color="primary" onClick={() => dispatch(deleteQuestion(question._id))}><DeleteIcon fontSize="small" /> Delete</Button>

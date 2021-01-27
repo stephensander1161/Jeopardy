@@ -1,13 +1,13 @@
 import express from 'express';
 import mongoose from 'mongoose';
 
-import PostQuestion from '../models/postQuestion.js';
+import Hello from '../models/postQuestions.js';
 
 const router = express.Router();
 
 export const getQuestions = async (req, res) => { 
     try {
-        const postQuestions = await PostQuestion.find();
+        const postQuestions = await Hello.find().limit(30);
                 
         res.status(200).json(postQuestions);
     } catch (error) {
@@ -19,7 +19,7 @@ export const getQuestion = async (req, res) => {
     const { id } = req.params;
 
     try {
-        const question = await PostQuestion.findById(id);
+        const question = await Hello.findById(id);
         
         res.status(200).json(question);
     } catch (error) {
@@ -28,9 +28,9 @@ export const getQuestion = async (req, res) => {
 }
 
 export const createQuestion = async (req, res) => {
-    const { question, answer, creator, tags, selectedFile } = req.body;
+    const { category, air_date, question, value, answer, round, show_number } = req.body;
 
-    const newPostQuestion = new PostQuestion({ question, answer, creator, tags, selectedFile })
+    const newPostQuestion = new Hello({ category, air_date, question, value, answer, round, show_number })
 
     try {
         await newPostQuestion.save();
@@ -43,13 +43,13 @@ export const createQuestion = async (req, res) => {
 
 export const updateQuestion = async (req, res) => {
     const { id } = req.params;
-    const { question, answer, creator, tags, selectedFile } = req.body;
+    const { category, air_date, question, value, answer, round, show_number } = req.body;
     
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
 
-    const updatedQuestion = { question, answer, creator, tags, selectedFile, _id: id };
+    const updatedQuestion = { category, air_date, question, value, answer, round, show_number, _id: id };
 
-    await PostQuestion.findByIdAndUpdate(id, updatedQuestion, { new: true });
+    await Hello.findByIdAndUpdate(id, updatedQuestion, { new: true });
 
     res.json(updatedQuestion);
 }
@@ -59,7 +59,7 @@ export const deleteQuestion = async (req, res) => {
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
 
-    await PostQuestion.findByIdAndRemove(id);
+    await Hello.findByIdAndRemove(id);
 
     res.json({ message: "Post deleted successfully." });
 }
@@ -69,9 +69,9 @@ export const likeQuestion = async (req, res) => {
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
     
-    const question = await PostQuestion.findById(id);
+    const question = await Hello.findById(id);
 
-    const updatedQuestion = await PostQuestion.findByIdAndUpdate(id, { likeCount: post.likeCount + 1 }, { new: true });
+    const updatedQuestion = await Hello.findByIdAndUpdate(id, { likeCount: post.likeCount + 1 }, { new: true });
     
     res.json(updatedQuestion);
 }

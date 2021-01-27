@@ -7,7 +7,7 @@ import useStyles from './styles';
 import { createQuestion, updateQuestion } from '../../actions/questions';
 
 const Form = ({ currentId, setCurrentId }) => {
-  const [questionData, setQuestionData] = useState({ question: '', answer: '', creator: '', tags: '', selectedFile: '' });
+  const [questionData, setQuestionData] = useState({ category: '', air_date: '', question: '', value: '', answer: '', round: '', show_number: ''});
   const question = useSelector((state) => (currentId ? state.questions.find((message) => message._id === currentId) : null));
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -18,7 +18,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
   const clear = () => {
     setCurrentId(0);
-    setQuestionData({ question: '', answer: '', creator: '', tags: '', selectedFile: '' });
+    setQuestionData({ category: '', air_date: '', question: '', value: '', answer: '', round: '', show_number: '' });
   };
 
   const handleSubmit = async (e) => {
@@ -37,11 +37,10 @@ const Form = ({ currentId, setCurrentId }) => {
     <Paper className={classes.paper}>
       <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
         <Typography variant="h6">{currentId ? 'Editing'  : 'Create Jeopardy Question'}</Typography>
-        <TextField name="question" variant="outlined" label="Question" fullWidth value={questionData.question} onChange={(e) => setQuestionData({ ...questionData, question: e.target.value })} />
-        <TextField name="answer" variant="outlined" label="Answer" fullWidth multiline rows={4} value={questionData.answer} onChange={(e) => setQuestionData({ ...questionData, answer: e.target.value })} />
-        <TextField name="creator" variant="outlined" label="Creator" fullWidth value={questionData.creator} onChange={(e) => setQuestionData({ ...questionData, creator: e.target.value })} />
-        <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth value={questionData.tags} onChange={(e) => setQuestionData({ ...questionData, tags: e.target.value.split(',') })} />
-        <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({ base64 }) => setQuestionData({ ...questionData, selectedFile: base64 })} /></div>
+        <TextField name="category" variant="outlined" label="Category" fullWidth value={questionData.category} onChange={(e) => setQuestionData({ ...questionData, category: e.target.value })} />
+        <TextField name="question" variant="outlined" label="Question" fullWidth multiline rows={4} value={questionData.question} onChange={(e) => setQuestionData({ ...questionData, question: e.target.value })} />
+        <TextField name="answer" variant="outlined" label="Answer" fullWidth value={questionData.answer} onChange={(e) => setQuestionData({ ...questionData, answer: e.target.value })} />
+        <TextField name="round" variant="outlined" label="Round" fullWidth value={questionData.round} onChange={(e) => setQuestionData({ ...questionData, round: e.target.value })} />
         <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
         <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
       </form>
