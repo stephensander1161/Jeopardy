@@ -1,6 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles({
+  root: {
+     minWidth: '2705',
+
+  },
   media: {
     height: 0,
     paddingTop: '56.25%',
@@ -14,6 +18,7 @@ export default makeStyles({
     height: '100%',
   },
   card: {
+    marginTop: '10px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -26,6 +31,7 @@ export default makeStyles({
     top: '20px',
     left: '20px',
     color: 'white',
+    padding: '30px'
   },
   overlay2: {
     position: 'absolute',
@@ -44,6 +50,36 @@ export default makeStyles({
   title: {
     padding: '0 16px',
   },
+
+  qtitle: {
+    padding: '12px',
+
+  },
+
+  atitle: {
+    padding: '5px',
+    
+
+  },
+
+  typography: {
+    fontSize: '12px'
+
+  },
+
+  question: {
+    fontSize: '16px',
+    color: 'grey'
+
+  },
+
+  answer: {
+    fontSize: '16px',
+    color: 'grey',
+    padding: '10px'
+
+  },
+
   cardActions: {
     padding: '0 16px 8px 16px',
     display: 'flex',
