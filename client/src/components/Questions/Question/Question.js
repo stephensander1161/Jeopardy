@@ -12,7 +12,6 @@ import useStyles from './styles';
 
 const Question = ({ question, setCurrentId }) => {
     const [showResults, setShowResults] = React.useState(false)
-        const [showButton, setShowButton] = React.useState(true)
 
 
   const dispatch = useDispatch();
@@ -20,7 +19,10 @@ const Question = ({ question, setCurrentId }) => {
 
     const answerClicked = () => {
       setShowResults(true); 
-      setShowButton(false);
+    }
+
+      const hideClicked = () => {
+      setShowResults(false); 
     }
 
 
@@ -37,10 +39,7 @@ const Question = ({ question, setCurrentId }) => {
             
 
             </Button>        
-            { showResults ? <Typography className={classes.qtitle} variant="h5">{question.answer}</Typography> : null }
-        
-        
-      <CardContent className="grid-container ">
+            { showResults ? <div><Typography className={classes.qtitle} variant="h5">{question.answer}</Typography>  <CardContent className="grid-container ">
           <div className="item1">
           <Typography variant="h10"  color="textSecondary" component="h15">Created by: </Typography>
         <Typography variant="h10" color="textSecondary" component="h15">{question.creator}</Typography>
@@ -52,7 +51,12 @@ const Question = ({ question, setCurrentId }) => {
       </CardContent>
       <CardActions className={classes.cardActions}>
         <Button size="small" color="primary" onClick={() => dispatch(deleteQuestion(question._id))}><DeleteIcon fontSize="small" /> Delete</Button>
-      </CardActions>
+              <Button size="small" color="primary" onClick={hideClicked}> Hide</Button>
+
+      </CardActions> </div> : null }
+        
+        
+     
     </Card>
   );
 };
