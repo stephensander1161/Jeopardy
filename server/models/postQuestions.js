@@ -13,6 +13,6 @@ const postSchema = mongoose.Schema({
     collection: 'import'
 })
 
-var Hello = mongoose.model('Hello', postSchema);
+var PostQuestions = mongoose.model('PostQuestions', postSchema);
 
-export default Hello;
+export default PostQuestions;

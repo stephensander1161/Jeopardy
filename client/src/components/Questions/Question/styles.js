@@ -5,6 +5,8 @@ export default makeStyles({
      minWidth: '2705',
 
   },
+
+  
   media: {
     height: 0,
     paddingTop: '56.25%',
@@ -52,7 +54,8 @@ export default makeStyles({
   },
 
   qtitle: {
-    padding: '12px',
+    padding: '5px',
+    textAlign: 'center',
 
   },
 

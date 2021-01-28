@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
+import { Container, AppBar, Typography, Grow, Grid, Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import Navbar from '../src/components/Navbar/Navbar';
 
@@ -10,6 +10,8 @@ import useStyles from './styles';
 
 const App = () => {
   const [currentId, setCurrentId] = useState(0);
+  const [showForm, setShowForm] = React.useState(false)
+
   const dispatch = useDispatch();
   const classes = useStyles();
 
@@ -17,22 +19,24 @@ const App = () => {
     dispatch(getQuestions());
   }, [currentId, dispatch]);
 
+  const formClicked = () => {
+      setShowForm(true); 
+    }
+    const hideClicked = () => {
+      setShowForm(false); 
+    }
+
   return (
-    <Container maxWidth="lg">
+    <Container >
       <Navbar />
+      <Button onClick={formClicked}>Edit</Button>
+      {showForm ? <div><Button onClick={hideClicked}>Hide</Button> <Form currentId={currentId} setCurrentId={setCurrentId} /></div> : null } 
+ 
     
-      <Grow in>
-        <Container>
-          <Grid container justify="space-between" alignItems="stretch" spacing={3}>
-            <Grid item xs={12} sm={7}>
+          
               <Questions setCurrentId={setCurrentId} />
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Form currentId={currentId} setCurrentId={setCurrentId} />
-            </Grid>
-          </Grid>
-        </Container>
-      </Grow>
+            
+            
     </Container>
   );
 };
