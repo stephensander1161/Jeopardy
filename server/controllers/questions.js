@@ -7,7 +7,7 @@ const router = express.Router();
 
 export const getQuestions = async (req, res) => { 
     try {
-        const postQuestions = await PostQuestions.find().limit(100);
+        const postQuestions = await PostQuestions.find().limit(1000);
                 
         res.status(200).json(postQuestions);
     } catch (error) {
