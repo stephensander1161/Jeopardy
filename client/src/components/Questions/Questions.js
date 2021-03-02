@@ -14,37 +14,24 @@ import Question from './Question/Question';
 import useStyles from './styles';
 
 const Questions = ({ setCurrentId }) => {
-  const questions  = useSelector((state) => state.questions);
-  const classes = useStyles();
+	const questions = useSelector((state) => state.questions);
+	const classes = useStyles();
 
-  
+	//  const handleChange = (event) => {
+	//     setQuestions(event.target.value);
+	//   };
 
-//  const handleChange = (event) => {
-//     setQuestions(event.target.value);
-//   };
-
-  return (
-
-    
-    
-
-    
-
-    
-
-   
-    !questions.length ? <CircularProgress /> : (
-
-      <Grid  container  spacing={3}>
-        {questions.map((question) => (
-          <Grid key={question._id} item xs={2} xs={1} xs={2}>
-            
-            <Question question={question} setCurrentId={setCurrentId}  />
-          </Grid>
-        ))}
-      </Grid>
-    )
-  );
+	return !questions.length ? (
+		<CircularProgress />
+	) : (
+		<Grid container spacing={1}>
+			{questions.map((question) => (
+				<Grid key={question._id} item xs={2} xs={1} xs={2}>
+					<Question question={question} setCurrentId={setCurrentId} />
+				</Grid>
+			))}
+		</Grid>
+	);
 };
 
 export default Questions;

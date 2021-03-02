@@ -9,36 +9,42 @@ import { getQuestions } from './actions/questions';
 import useStyles from './styles';
 
 const App = () => {
-  const [currentId, setCurrentId] = useState(0);
-  const [showForm, setShowForm] = React.useState(false)
+	const [ currentId, setCurrentId ] = useState(0);
+	const [ showForm, setShowForm ] = React.useState(false);
 
-  const dispatch = useDispatch();
-  const classes = useStyles();
+	const dispatch = useDispatch();
+	const classes = useStyles();
 
-  useEffect(() => {
-    dispatch(getQuestions());
-  }, [currentId, dispatch]);
+	useEffect(
+		() => {
+			dispatch(getQuestions());
+		},
+		[ currentId, dispatch ]
+	);
 
-  const formClicked = () => {
-      setShowForm(true); 
-    }
-    const hideClicked = () => {
-      setShowForm(false); 
-    }
+	const formClicked = () => {
+		setShowForm(true);
+	};
+	const hideClicked = () => {
+		setShowForm(false);
+	};
 
-  return (
-    <Container >
-      <Navbar />
-      <Button onClick={formClicked}>Edit</Button>
-      {showForm ? <div><Button onClick={hideClicked}>Hide</Button> <Form currentId={currentId} setCurrentId={setCurrentId} /></div> : null } 
- 
-    
-          
-              <Questions setCurrentId={setCurrentId} />
-            
-            
-    </Container>
-  );
+	return (
+		<Container>
+			<Navbar />
+			<Button className={classes.addQuestionFont} onClick={formClicked}>
+				Add a Question
+			</Button>
+			{showForm ? (
+				<div>
+					<Button onClick={hideClicked}>Hide</Button>{' '}
+					<Form currentId={currentId} setCurrentId={setCurrentId} />
+				</div>
+			) : null}
+
+			<Questions setCurrentId={setCurrentId} />
+		</Container>
+	);
 };
 
 export default App;
